@@ -65,7 +65,7 @@ the knowledge base, never in the project. Stage only the files you
 wrote:
 
 ```
-git -C <kb> add <service>/specs/<file>
+git -C <kb> add <service>/<specs|plans|docs>/<file>
 git -C <kb> commit -m "<service>: <what changed>"
 ```
 
@@ -84,16 +84,17 @@ partner to set them. Never make one up.
 knowledge base and in references), git URL, the branch to read, and a
 one-line description.
 
-A service's knowledge-base folder comes first. Open its code only when
-that folder doesn't answer what you need. Then:
+When to read a service's code is up to your human partner or the skill
+that sent you here. To read it:
 
 1. Pick the services whose code you need, using the descriptions in
    `repos.yaml`.
-2. Sync the references, once per session: dispatch a fresh subagent
-   with `sync-references-prompt.md` in this directory. It clones each
-   repo in `repos.yaml` that's missing and updates the rest, skipping
-   the project you're in. Without a subagent tool, run
-   `scripts/sync-references.sh` yourself.
+2. Sync the references: dispatch a fresh subagent with
+   `sync-references-prompt.md` in this directory. It clones each repo
+   in `repos.yaml` that's missing and updates the rest, skipping the
+   project you're in. Without a subagent tool, run
+   `scripts/sync-references.sh` yourself. Once per session is enough,
+   unless the skill that sent you here asks for the latest code.
 3. Read only the parts you need from `<parent>/references/<service>/`.
    Never edit, commit or push there.
 

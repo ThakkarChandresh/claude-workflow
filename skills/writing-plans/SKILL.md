@@ -13,12 +13,42 @@ Write implementation plans for an engineer who has not seen this codebase or thi
 
 **Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
 
-**Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
+**Save plans to:** the knowledge base, never the project (invoke devflow:knowledge-base first; it sets the repo up if needed): `knowledge-base/<service>/plans/YYYY-MM-DD-<feature-name>.md`, committed there and pushed once approved.
 - (User preferences for plan location override this default)
 
 ## Scope Check
 
 If the spec covers multiple independent subsystems, it should have been broken into sub-project specs during brainstorming. If it wasn't, suggest breaking this into separate plans — one per subsystem. Each plan should produce working, testable software on its own.
+
+## What It Builds On
+
+Before mapping files, invoke devflow:knowledge-base and read both the
+plans and the code of every service the plan involves. Read both every
+time: the plans say what's already planned, and the code shows how it
+works today.
+
+- **This service:** its plans that touch the same parts, in
+  `knowledge-base/<service>/plans/`, and its code, in the project
+  you're in.
+- **Each other service the spec touches or depends on:** its plans, in
+  `knowledge-base/<other>/plans/`, and its code, in
+  `references/<other>/`. Pick those services from the spec and the
+  descriptions in `knowledge-base/repos.yaml`. Sync the references
+  first so you read the latest code, even if they were synced earlier
+  in this session.
+
+Read the code through Explore subagents, one per service, dispatched in
+parallel once the references are synced. Ask each for a very thorough
+search, and say what the plan needs from that service: in this
+service, the files, patterns and interfaces the change touches; in
+another service, the endpoints, messages, types and names the plan
+calls or changes. Have them report exact signatures, paths and fields
+with file:line, so you can open any you're unsure of. Without an
+Explore subagent, read the code yourself.
+
+Copy what the plan relies on from other services into it exactly, such
+as a path, a payload or a field name. The implementer won't open the
+other service's code.
 
 ## File Structure
 
@@ -184,9 +214,12 @@ them to review the plan and confirm it captures what they want; wait for that
 review before implementation, then use the preserved method. Otherwise, ask
 them to review the plan and choose an execution method before implementation.
 
+Once they approve the plan, push it (see Save plans to) before
+implementation starts.
+
 **When no execution method has already been supplied:**
 
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Please review the plan. Which execution approach would you prefer?**
+**"Plan complete and saved to `knowledge-base/<service>/plans/<filename>.md`. Please review the plan. Which execution approach would you prefer?**
 
 - **Subagent-driven** - A fresh subagent implements each task and a fresh reviewer checks it before the next one starts, then a whole-branch review at the end. Most thorough; costs a fresh context per task and per review.
 - **Native** - I implement every task myself in this session, the way this harness runs work, then one fresh reviewer on the most capable model checks the whole branch. Cheapest and fastest; no independent review until the end. Runs well with a mid-tier session model, since the plan carries the design.
@@ -195,7 +228,7 @@ them to review the plan and choose an execution method before implementation.
 
 **When an execution method has already been supplied:**
 
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Please review the plan. Does it capture what you want?"**
+**"Plan complete and saved to `knowledge-base/<service>/plans/<filename>.md`. Please review the plan. Does it capture what you want?"**
 
 **If Subagent-driven chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
