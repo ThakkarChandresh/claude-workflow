@@ -1,6 +1,6 @@
 ---
 name: knowledge-base
-description: Use when saving or looking up a service's specs, plans, or design docs, or when another skill says to put a document in the knowledge base
+description: Use when saving or looking up a service's specs, plans, or design docs, when you need another service's code, or when another skill says to put a document in the knowledge base
 ---
 
 # Knowledge Base
@@ -24,10 +24,13 @@ base's path.
   knowledge-base/
     README.md
     link-remote.sh
+    repos.yaml        every service's git URL, branch and description
     <service>/
       specs/          design docs: YYYY-MM-DD-<topic>-design.md
       plans/          implementation plans
       docs/           other design and reference docs
+  references/
+    <service>/        a read-only clone of each repo in repos.yaml
 ```
 
 ## First Use
@@ -74,3 +77,27 @@ knowledge base is only local.
 
 If a commit fails because git has no name or email set, ask your human
 partner to set them. Never make one up.
+
+## References
+
+`<kb>/repos.yaml` lists every service: its name (also its folder in the
+knowledge base and in references), git URL, the branch to read, and a
+one-line description.
+
+A service's knowledge-base folder comes first. Open its code only when
+that folder doesn't answer what you need. Then:
+
+1. Pick the services whose code you need, using the descriptions in
+   `repos.yaml`.
+2. Sync the references, once per session: dispatch a fresh subagent
+   with `sync-references-prompt.md` in this directory. It clones each
+   repo in `repos.yaml` that's missing and updates the rest, skipping
+   the project you're in. Without a subagent tool, run
+   `scripts/sync-references.sh` yourself.
+3. Read only the parts you need from `<parent>/references/<service>/`.
+   Never edit, commit or push there.
+
+If a repo fails to sync, tell your human partner which one and why, and
+go on with what you have. If `<kb>/repos.yaml` doesn't exist, copy
+`template/repos.yaml` from this directory there, and commit it once
+your human partner has filled it in.

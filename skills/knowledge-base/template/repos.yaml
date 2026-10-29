@@ -1,0 +1,17 @@
+# Repos that devflow skills can read code from, one entry per service:
+#
+#   name:        the service's name, which is also its folder in
+#                knowledge-base/ and in references/
+#   url:         git URL to clone
+#   branch:      the branch to read
+#   description: one line on what the service does, used to pick
+#                which code to read
+#
+# For example:
+#
+#   - name: orders
+#     url: https://github.com/acme/orders.git
+#     branch: main
+#     description: Takes customer orders and tracks them to delivery.
+
+repos:
