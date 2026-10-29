@@ -51,6 +51,11 @@ when it has a remote, then read this service's folder and the folders
 of any other services this change touches or depends on. If it isn't
 there yet, move on; it gets set up when you write the design doc.
 
+For other services, read their knowledge-base folders, not their code.
+Open another service's code only when its folder doesn't answer what
+you need: invoke devflow:knowledge-base, which syncs each service's
+repo into `references/` next to the knowledge base.
+
 ## Your First Message
 
 Move the work forward, with one of these:
