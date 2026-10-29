@@ -1,0 +1,9 @@
+{
+  "name": "devflow",
+  "description": "Claude Code workflow skills inspired by obra/superpowers",
+  "version": "0.1.0",
+  "author": {
+    "name": "ThakkarChandresh"
+  },
+  "license": "MIT"
+}

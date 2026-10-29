@@ -1,0 +1,14 @@
+{
+  "name": "devflow-dev",
+  "description": "Development marketplace for the devflow plugin",
+  "owner": {
+    "name": "ThakkarChandresh"
+  },
+  "plugins": [
+    {
+      "name": "devflow",
+      "description": "Claude Code workflow skills inspired by obra/superpowers",
+      "source": "./"
+    }
+  ]
+}
