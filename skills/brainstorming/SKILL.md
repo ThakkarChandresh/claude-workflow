@@ -28,7 +28,7 @@ Before you start implementing, you must, in order:
 1. Lay out the approaches in a message of their own, and have your
    human partner pick one (see Lay out the approaches).
 2. Write the design doc, short or full (see Size the Work).
-3. Get their approval of that doc.
+3. Get their approval of that doc, then push it (see Where it goes).
 4. Invoke the superpowers:writing-plans skill.
 
 Two things aren't implementing: a spike they said yes to (see Spike to
@@ -43,6 +43,13 @@ first message. Read what they referred to and the code or material it
 connects to, and keep reading until you can explain how the relevant
 parts work today and what this change would touch. Never ask what the
 project or their context already answers.
+
+**Check the knowledge base too.** In a software repo, specs, plans and
+design docs live in `knowledge-base`, a git repo in this project's
+parent folder with one folder per service. If it's there, pull it first
+when it has a remote, then read this service's folder and the folders
+of any other services this change touches or depends on. If it isn't
+there yet, move on; it gets set up when you write the design doc.
 
 ## Your First Message
 
@@ -221,8 +228,10 @@ For a small change, the short design covers the same points in a line
 or two each and goes straight to your human partner, without the
 builder check.
 
-**Where it goes:** in a software repo,
-`docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`, committed.
+**Where it goes:** in a software repo, the knowledge base, never the
+project (invoke devflow:knowledge-base first; it sets the repo up if
+needed): `knowledge-base/<service>/specs/YYYY-MM-DD-<topic>-design.md`,
+committed there and pushed once approved.
 Otherwise, ask. Your human partner's preferences override both.
 
 **Builder check** (for a project): dispatch a fresh subagent with
