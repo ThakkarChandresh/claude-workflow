@@ -91,6 +91,18 @@ Subagent (general-purpose):
     Re-running the suite to regenerate what you failed to read is not
     verification; illegibility of the evidence is not invalidation of it.
 
+    ## Repo Conventions
+
+    If the repo has a `convention/` folder at its root, read every `.md`
+    file in it (`ls convention/*.md` from the repo root) before judging
+    the code. They are this repo's own rules: naming, layout, error
+    handling, logging, tests and the like. Check the diff against each
+    one. A change that breaks a convention is a finding: cite the code's
+    file:line and the convention's file:line, and grade it by its effect
+    like any other finding; a convention written as a must or a never,
+    broken, is at least Important. Reading these files is not crawling
+    the codebase. If there is no such folder, say so and move on.
+
     ## Part 1: Spec Compliance
 
     Compare the diff against What Was Requested:
@@ -167,6 +179,11 @@ Subagent (general-purpose):
     - ⚠️ Cannot verify from diff: [requirements you could not verify from the
       diff alone, and what the controller should check — report alongside the
       ✅/❌ verdict for everything you could verify]
+
+    ### Conventions
+
+    The `convention/*.md` files you read, or "No convention/ folder".
+    Breaches go under Issues.
 
     ### Strengths
     [What's well done? Be specific.]

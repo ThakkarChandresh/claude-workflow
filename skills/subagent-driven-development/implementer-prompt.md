@@ -72,6 +72,16 @@ Subagent (general-purpose):
     - In existing codebases, follow established patterns. Improve code you're touching
       the way a good developer would, but don't restructure things outside your task.
 
+    ## Repo Conventions
+
+    If the repo has a `convention/` folder at its root, read every `.md`
+    file in it (`ls convention/*.md` from the repo root) before you write
+    code, and follow them: they are this repo's own rules for naming,
+    layout, error handling, logging, tests and the like. The reviewer
+    checks your diff against them. If the task brief asks for something
+    a convention forbids, don't pick one quietly: ask, or follow the
+    brief and report it as DONE_WITH_CONCERNS, naming both.
+
     ## When You're in Over Your Head
 
     It is always OK to stop and say "this is too hard for me." Bad work is worse than
@@ -107,6 +117,7 @@ Subagent (general-purpose):
     - Did I avoid overbuilding (YAGNI)?
     - Did I only build what was requested?
     - Did I follow existing patterns in the codebase?
+    - Did I follow every `convention/*.md` rule, if the repo has them?
 
     **Testing:**
     - Do tests actually verify behavior (not just mock behavior)?
@@ -134,6 +145,7 @@ Subagent (general-purpose):
       - RED: command run, relevant failing output before implementation, and why the failure was expected
       - GREEN: command run and relevant passing output after implementation
     - Files changed
+    - The `convention/*.md` files you read, or "No convention/ folder"
     - Self-review findings (if any)
     - Any issues or concerns
 
