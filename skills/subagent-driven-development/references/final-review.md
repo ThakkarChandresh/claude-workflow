@@ -1,6 +1,6 @@
 # Final Review and Finish
 
-Part of superpowers:subagent-driven-development. Every task in the plan is
+Part of devflow:subagent-driven-development. Every task in the plan is
 complete.
 
 The final whole-branch review gets a package too: run
@@ -9,7 +9,7 @@ branch started from, e.g. `git merge-base main HEAD`) and include the
 printed path in the final review dispatch, so the final reviewer reads
 one file instead of re-deriving the branch diff with git commands. Dispatch
 on the most capable available model (see SKILL.md's Model Selection), using
-superpowers:requesting-code-review's
+devflow:requesting-code-review's
 [code-reviewer.md](../../requesting-code-review/code-reviewer.md). Point it at
 the ledger's deferred-minor and parked lines so it can triage which must be
 fixed before merge.
@@ -25,8 +25,8 @@ Adjudicate any residual findings as in the fix loop's breaker
 (references/fix-loop.md): park with rulings, or rule on the load-bearing
 ones and ledger what you decided. Only the four things that stop a running
 plan (top of SKILL.md) stop you here. There is no second fix wave —
-residual load-bearing findings surface to your human partner when
-finishing-a-development-branch presents the options.
+residual load-bearing findings surface to your human partner in your
+final message.
 
 ### Finish
 
@@ -44,4 +44,6 @@ delete this plan's workspace (`rm -rf <workspace>`) — the git history is
 the record now. Sibling directories belong to other plans; leave them
 alone.
 
-Use superpowers:finishing-a-development-branch.
+Then report to your human partner and stop: the branch the work is on,
+the commits it made, and anything parked. Running the full test suite,
+merging and pushing are theirs.
