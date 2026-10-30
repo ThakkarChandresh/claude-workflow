@@ -29,6 +29,7 @@ base's path.
       specs/          design docs: YYYY-MM-DD-<topic>-design.md
       plans/          implementation plans
       docs/           other design and reference docs
+      contracts/      api.md and cross-service.md (see devflow:contracts)
   references/
     <service>/        a read-only clone of each repo in repos.yaml
 ```

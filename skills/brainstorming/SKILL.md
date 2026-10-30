@@ -56,6 +56,10 @@ Open another service's code only when its folder doesn't answer what
 you need: invoke devflow:knowledge-base, which syncs each service's
 repo into `references/` next to the knowledge base.
 
+A service's `contracts/` folder there says exactly how to talk to it:
+every request, reply and event. Look there first for how this change
+would talk to another service.
+
 ## Your First Message
 
 Move the work forward, with one of these:

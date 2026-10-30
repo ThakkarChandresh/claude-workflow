@@ -50,6 +50,24 @@ Copy what the plan relies on from other services into it exactly, such
 as a path, a payload or a field name. The implementer won't open the
 other service's code.
 
+## Contracts
+
+Once you know what the plan builds, invoke devflow:contracts and update
+this service's `api.md` and `cross-service.md` in the knowledge base to
+what it will build: every request, reply and event the plan adds,
+changes or removes. For each event this service will consume, check the
+subject, body form and delivery against the publisher's contract, and
+raise any mismatch before writing tasks. Commit the contracts with the
+plan, in one commit.
+
+In the plan:
+
+- Each task that adds or changes a request, reply or event lists, under
+  **Contract**, the entries it must match, by file and heading.
+- The last task checks every entry the plan changed against the code,
+  and fixes the contract wherever the code is right (see
+  devflow:contracts).
+
 ## File Structure
 
 Before defining tasks, map out which files will be created or modified and what each one is responsible for. This is where decomposition decisions get locked in.
@@ -135,6 +153,10 @@ owns the code, in that task's own step style.]
   and return types. A task's implementer sees only their own task; this
   block is how they learn the names and types neighboring tasks use.]
 
+**Contract:** [the contract entries this task must match, such as
+`api.md` › Get a device; omit when the task touches no request, reply
+or event]
+
 - [ ] **Step 1: Write the failing test**
 
 ```python
@@ -203,6 +225,8 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 **4. Review Focus:** For each input class or failure mode the spec implies, is there a task whose tests exercise it? The five uncovered ones most likely to bite a person go in the Review Focus section, and each line there gets its test added to the owning task. An empty section means you checked and found none, not that you skipped the check.
 
 **5. Proportion:** Compare the plan's length to the spec's. A plan several times longer than the spec it implements is a transcript of the program, not a plan. If code blocks are most of the document, replace bodies with signatures, test names and assertions, and check that each step is still unambiguous.
+
+**6. Contracts:** Does every subject, path, field, status and error code in the plan match the contracts exactly? Does every request, reply and event the plan adds, changes or removes have its entry updated, and does the last task check them against the code?
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
