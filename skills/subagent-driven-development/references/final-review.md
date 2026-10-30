@@ -28,6 +28,32 @@ plan (top of SKILL.md) stop you here. There is no second fix wave —
 residual load-bearing findings surface to your human partner in your
 final message.
 
+### Check the Contracts
+
+Once the final review and its fix wave are done, check this service's
+contracts in the knowledge base (see devflow:contracts) against the code.
+Skip it only when no task names a **Contract:** entry and the branch
+adds, changes or removes no request, reply or event; ledger
+`Contracts: skipped, <why>`.
+
+Run `bash scripts/review-package PLAN_FILE MERGE_BASE HEAD` again, since
+the fix wave moved HEAD, and dispatch ONE fresh subagent with
+[contract-check-prompt.md](../contract-check-prompt.md). It edits the
+contracts to match the code and reports what it changed.
+
+Then:
+
+- **Contract edits:** commit them in the knowledge base, staging only
+  the two contract files:
+  `git -C <kb> commit -m "<service>: correct contract for <plan>"`.
+  Pushing it is your human partner's call, like the branch. Ledger
+  `Contracts: <commit7>, <N> edits`.
+- **Code that looks wrong:** don't start another fix wave. Ledger each
+  one as `Ruling: contract kept, code differs — <entry> at <file:line>`,
+  so it reaches your human partner under "Rulings I made".
+- **Consumers affected:** ledger each one as a `Ruling:` line naming
+  the service and the event.
+
 ### Finish
 
 Before you delete anything, collect every ledger line containing `Ruling:` —
@@ -45,5 +71,6 @@ the record now. Sibling directories belong to other plans; leave them
 alone.
 
 Then report to your human partner and stop: the branch the work is on,
-the commits it made, and anything parked. Running the full test suite,
+the commits it made, the contract commit in the knowledge base, and
+anything parked. Running the full test suite,
 merging and pushing are theirs.

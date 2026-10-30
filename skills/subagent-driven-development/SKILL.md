@@ -74,6 +74,7 @@ digraph process {
     "Setup: ledger check, read plan, pre-flight review" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Final review and finish: read references/final-review.md" [shape=box];
+    "Check the contracts against the code (./contract-check-prompt.md)" [shape=box];
     "Final review clean: delete this plan's workspace" [shape=box];
     "Report to your human partner and stop" [shape=box style=filled fillcolor=lightgreen];
 
@@ -90,7 +91,8 @@ digraph process {
     "Append completion to ledger, mark todo complete" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Final review and finish: read references/final-review.md" [label="no"];
-    "Final review and finish: read references/final-review.md" -> "Final review clean: delete this plan's workspace";
+    "Final review and finish: read references/final-review.md" -> "Check the contracts against the code (./contract-check-prompt.md)";
+    "Check the contracts against the code (./contract-check-prompt.md)" -> "Final review clean: delete this plan's workspace";
     "Final review clean: delete this plan's workspace" -> "Report to your human partner and stop";
 }
 ```
@@ -314,7 +316,8 @@ parked-with-ruling at the cap.
 
 When every task is complete, read
 [references/final-review.md](references/final-review.md) and follow it. It
-covers the whole-branch review, its single fix wave, and how you finish.
+covers the whole-branch review, its single fix wave, the contract check,
+and how you finish.
 
 ## Common Rationalizations
 

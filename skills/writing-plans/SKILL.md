@@ -58,13 +58,10 @@ subject, body form and delivery against the publisher's contract, and
 raise any mismatch before writing tasks. Commit the contracts with the
 plan, in one commit.
 
-In the plan:
-
-- Each task that adds or changes a request, reply or event lists, under
-  **Contract**, the entries it must match, by file and heading.
-- The last task checks every entry the plan changed against the code,
-  and fixes the contract wherever the code is right (see
-  devflow:contracts).
+In the plan, each task that adds or changes a request, reply or event
+lists, under **Contract**, the entries it must match, by file and
+heading. Don't add a task to check the contracts against the code:
+devflow:subagent-driven-development does that once all tasks are done.
 
 ## File Structure
 
@@ -224,7 +221,7 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **5. Proportion:** Compare the plan's length to the spec's. A plan several times longer than the spec it implements is a transcript of the program, not a plan. If code blocks are most of the document, replace bodies with signatures, test names and assertions, and check that each step is still unambiguous.
 
-**6. Contracts:** Does every subject, path, field, status and error code in the plan match the contracts exactly? Does every request, reply and event the plan adds, changes or removes have its entry updated, and does the last task check them against the code?
+**6. Contracts:** Does every subject, path, field, status and error code in the plan match the contracts exactly? Does every request, reply and event the plan adds, changes or removes have its entry updated?
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
